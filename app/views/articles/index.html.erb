@@ -19,7 +19,7 @@
     <th>Id</td>
     <th>Created at</th>
     <th>Title</th>
-    <th></th>
+    <th>User</th>
     <th colspan="2"></th>
   </tr>
   <% @articles.each do |article| %>
@@ -27,6 +27,7 @@
       <td><%= article.id %></td>
       <td><%= article.created_at.to_date %></td>
       <td><%= article.title %></td>
+      <td><%= article.user.email %></td>
       <td><%= link_to 'Show', article_path(article), class: "btn btn-success"%></td>
       <td><%= link_to 'Seek And Destroy', article_path(article),
                                           method: :delete,
