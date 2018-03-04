@@ -37,6 +37,9 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
+    if @article.user_id != current_user
+      redirect_to article_path notice: "You have no access to edit this article"
+    end
   end
 
   def update
