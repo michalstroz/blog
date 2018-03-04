@@ -46,7 +46,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :text) #permit dopuszcza do zmiany tylko te formularze, dane, które są podane jako argumenty
+    params.require(:article).permit(:title, :text, :tags) #permit dopuszcza do zmiany tylko te formularze, dane, które są podane jako argumenty
   end
 
   def provide_article
