@@ -58,7 +58,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :text, :tags)
+    params.require(:article).permit(:title, :text, :tags, :image)
       .merge(user: current_user) #permit dopuszcza do zmiany tylko te formularze, dane, które są podane jako argumenty
   end
 
