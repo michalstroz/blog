@@ -30,7 +30,10 @@
   <%= link_to 'Edit', edit_article_path(@article) %>
   <%= link_to 'Back', articles_path %>
 </p>
-<h2>Comments</h2>
-<%= render @article.comments.order(created_at: :desc) %>
 
+<h2>Comments</h2>
+<button type="button" id="comments-button" class="btn btn-primary" value="primary">Show comments</button>
+<div class="comments hided-comments" id="article-comments">
+  <%= render @article.comments.order(created_at: :desc) %>
+</div>
 <%= render 'comments/form' %>
