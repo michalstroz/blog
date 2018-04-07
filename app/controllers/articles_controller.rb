@@ -32,6 +32,7 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article.destroy
+    ArticleMailer.article_destroy_info(@article).deliver
     redirect_to articles_path
   end
 
