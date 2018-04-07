@@ -15,7 +15,7 @@ class Article < ApplicationRecord
   end
 
   private
-
+  
   def sanitize_tags(text)
     text.split.map(&:downcase).uniq
   end
