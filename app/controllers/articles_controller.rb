@@ -2,10 +2,12 @@ class ArticlesController < ApplicationController
   before_action :provide_article, only: [:show, :destroy, :edit, :update, :add_like]
 
   def index
+    @articles = Article.all
+                       .paginate(:page => params[:page], :per_page => 15)
+                       .includes(:user)
+
     if params[:q].present?
-      @articles = Article.where("? = any(tags)", params[:q])
-    else
-      @articles = Article.all
+      @articles = @articles.where("? = any(tags)", params[:q])
     end
   end
 
