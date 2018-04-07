@@ -32,7 +32,6 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article.destroy
-    ArticleMailer.article_destroy_info(@article).deliver
     redirect_to articles_path
   end
 
@@ -53,7 +52,6 @@ class ArticlesController < ApplicationController
 
   def add_like
     @article.likes.create(user: current_user)
-
     redirect_to article_path(@article)
   end
 
