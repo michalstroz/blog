@@ -1,6 +1,7 @@
 class Article < ApplicationRecord
   validates :title, presence: true, length: { minimum: 5 }
 
+  before_validation :filter_profanity_words
   after_destroy :send_destroy_info
 
   belongs_to :user
@@ -15,7 +16,7 @@ class Article < ApplicationRecord
   end
 
   private
-  
+
   def sanitize_tags(text)
     text.split.map(&:downcase).uniq
   end
@@ -24,4 +25,7 @@ class Article < ApplicationRecord
     ArticleMailer.article_destroy_info(self).deliver
   end
 
+  def filter_profanity_words
+    self.text = ProfanityFilter.new(self.text).censored_text
+  end
 end
